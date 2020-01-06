@@ -484,3 +484,11 @@ a.dotted-link:hover {
 .footer .fa-heart {
   color: #fb866a;
 }
+.footer-grid {
+  display: grid;
+  grid-template-columns: 15% 70% 15%;
+}
+
+.footer-grid-element {
+  text-align: center;
+}
