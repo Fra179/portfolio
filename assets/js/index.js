@@ -22,6 +22,19 @@ function switchTheme() {
     }
 }
 
+
+function getAge() {
+    var today = new Date();
+    var birthDate = new Date("September 17, 2004");
+    var age = today.getFullYear() - birthDate.getFullYear();
+    var m = today.getMonth() - birthDate.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+        age--;
+    }
+    return age;
+}
+
+
 window.onload = function() {
     if(isLsSupported()) {
         var currentTheme = localStorage.currentTheme;
@@ -43,8 +56,15 @@ window.onload = function() {
         document.getElementById("dark-theme").disabled = true;
         document.getElementById("footer-switchtheme").innerHTML = "";
     }
+
     // HitCounter Updater
-        var req = new XMLHttpRequest();
-        req.open("GET", "https://hitcounter.pythonanywhere.com/count?url=francescodb.me", true);
-        req.send(null);
+    var req = new XMLHttpRequest();
+    req.open("GET", "https://hitcounter.pythonanywhere.com/count?url=francescodb.me", true);
+    req.send(null);
+    
+    // Calculate and update age
+    var age = document.getElementById("age");
+    if (age) {
+        age.innerHTML = getAge();
+    }
 };
