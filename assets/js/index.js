@@ -36,11 +36,12 @@ function getAge() {
 
 
 window.onload = function() {
+    // Theme
     if(isLsSupported()) {
         var currentTheme = localStorage.currentTheme;
         if(!currentTheme) {
-            localStorage.currentTheme = "default";
-            currentTheme = "default";
+            localStorage.currentTheme = "dark";
+            currentTheme = "dark";
         }
         if(currentTheme === "default") {
             document.getElementById("default-theme").disabled = false;
@@ -52,19 +53,29 @@ window.onload = function() {
         }
     }
     else {
-        document.getElementById("default-theme").disabled = false;
-        document.getElementById("dark-theme").disabled = true;
+        document.getElementById("dark-theme").disabled = false;
+        document.getElementById("default-theme").disabled = true;
         document.getElementById("footer-switchtheme").innerHTML = "";
     }
 
     // HitCounter Updater
-    var req = new XMLHttpRequest();
-    req.open("GET", "https://hitcounter.pythonanywhere.com/count?url=francescodb.me", true);
-    req.send(null);
+    var hitcounter = document.getElementById("hitcounter");
+    if (hitcounter) {
+        var req = new XMLHttpRequest();
+        req.open("GET", "https://hitcounter.pythonanywhere.com/count?url=francescodb.me", true);
+        req.onload = function (e) {
+            if (req.readyState === 4) {
+                if (req.status === 200) {
+                    hitcounter.innerText = req.responseText;
+                }
+            }
+        }
+        req.send(null);
+    }
     
     // Calculate and update age
     var age = document.getElementById("age");
     if (age) {
         age.innerHTML = getAge();
     }
-};
+}
