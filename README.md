@@ -1,5 +1,5 @@
 # Portfolio
-Public repository for my [web portfolio](https://francescodb.me).
+This is the public repository for my [web portfolio](https://francescodb.me).
 
 ## Credits:
 - [Bootstrap 3.2](https://getbootstrap.com/)
