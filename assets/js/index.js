@@ -59,13 +59,23 @@ window.onload = function() {
     }
 
     // HitCounter Updater
-    var req = new XMLHttpRequest();
-    req.open("GET", "https://hitcounter.pythonanywhere.com/count?url=francescodb.me", true);
-    req.send(null);
+    var hitcounter = document.getElementById("hitcounter");
+    if (hitcounter) {
+        var req = new XMLHttpRequest();
+        req.open("GET", "https://hitcounter.pythonanywhere.com/count?url=francescodb.me", true);
+        req.onload = function (e) {
+            if (req.readyState === 4) {
+                if (req.status === 200) {
+                    hitcounter.innerText = req.responseText;
+                }
+            }
+        }
+        req.send(null);
+    }
     
     // Calculate and update age
     var age = document.getElementById("age");
     if (age) {
         age.innerHTML = getAge();
     }
-};
+}
