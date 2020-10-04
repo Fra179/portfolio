@@ -36,11 +36,12 @@ function getAge() {
 
 
 window.onload = function() {
+    // Theme
     if(isLsSupported()) {
         var currentTheme = localStorage.currentTheme;
         if(!currentTheme) {
-            localStorage.currentTheme = "default";
-            currentTheme = "default";
+            localStorage.currentTheme = "dark";
+            currentTheme = "dark";
         }
         if(currentTheme === "default") {
             document.getElementById("default-theme").disabled = false;
@@ -52,8 +53,8 @@ window.onload = function() {
         }
     }
     else {
-        document.getElementById("default-theme").disabled = false;
-        document.getElementById("dark-theme").disabled = true;
+        document.getElementById("dark-theme").disabled = false;
+        document.getElementById("default-theme").disabled = true;
         document.getElementById("footer-switchtheme").innerHTML = "";
     }
 
