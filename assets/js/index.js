@@ -62,7 +62,7 @@ window.onload = function() {
     var hitcounter = document.getElementById("hitcounter");
     if (hitcounter) {
         var req = new XMLHttpRequest();
-        req.open("GET", "https://hitcounter.pythonanywhere.com/count?url=francescodb.me", true);
+        req.open("GET", "https://hitcounter.francescodb.me/count?url=francescodb.me", true);
         req.onload = function (e) {
             if (req.readyState === 4) {
                 if (req.status === 200) {
