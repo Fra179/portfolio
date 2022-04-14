@@ -61,16 +61,22 @@ window.onload = function() {
     // HitCounter Updater
     var hitcounter = document.getElementById("hitcounter");
     if (hitcounter) {
-        var req = new XMLHttpRequest();
-        req.open("GET", "https://hitcounter.francescodb.me/count?url=francescodb.me", true);
-        req.onload = function (e) {
-            if (req.readyState === 4) {
-                if (req.status === 200) {
-                    hitcounter.innerText = req.responseText;
-                }
+        fetch(
+            'https://hitcounter.francescodb.me/count?url=francescodb.me',
+            {
+                'method': 'GET',
+                'credentials': 'include',
             }
-        }
-        req.send(null);
+        ).then((response) => {
+            if (response.status !== 200) {
+                console.log("There was a problem with the counter.")
+                return;
+            }
+
+            response.text().then((text) => {
+                hitcounter.innerText = text;
+            });
+        });
     }
     
     // Calculate and update age
